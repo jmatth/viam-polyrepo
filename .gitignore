@@ -1,0 +1,2 @@
+# Ignore all directories assuming they are cloned repos.
+/*/
