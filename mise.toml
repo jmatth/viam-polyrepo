@@ -1,0 +1,41 @@
+[tools]
+go = "1.23"
+node = "22"
+
+[tasks.vclone]
+description = "Clone a repo from the viamrobotics org"
+run = """
+#!/usr/bin/env bash
+
+repo='{{arg(name="repo")}}'
+
+if test -e $repo; then
+  echo "$repo already exists"
+  exit 1
+fi
+
+git clone git@github.com:viamrobotics/${repo}.git
+"""
+
+[tasks.git-pull-all]
+run = 'fd -td -H --exact-depth=2 "^\.git$" --threads 1 --exec git -C {//} fetch'
+
+[tasks.go-work-init]
+description = "Pull all workspace folders into a unified go workspace"
+run = """
+#!/bin/bash -x
+go work init $(fd --exact-depth=2 --format='{//}' go.mod)
+go work sync
+"""
+
+[tasks.go-work-init-only]
+description = "Pull specified workspace folders into a unified go workspace"
+run = """
+#!/bin/bash -x
+go work init {{arg(var=true)}}
+go work sync
+"""
+
+[tasks.go-work-deinit]
+description = "Destroy the go workspace so repos can be worked on independently"
+run = "rm -f go.work go.work.sum"
