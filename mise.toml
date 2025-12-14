@@ -1,4 +1,5 @@
 [tools]
+actionlint = "1.7.8"
 go = "1.25"
 node = "22"
 pixi = "latest"
