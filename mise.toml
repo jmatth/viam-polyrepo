@@ -4,9 +4,13 @@ go = "1.25"
 node = "22"
 pixi = "latest"
 
+[vars]
+pixi_env = "{% if 'PIXI_ENVIRONMENT_NAME' in env %}{{ env.PIXI_ENVIRONMENT_NAME }}{% else %}default{% endif %}"
+pixi_dir = "{{config_root}}/.pixi/envs/{{ vars.pixi_env }}"
+
 [env]
-PKG_CONFIG_PATH = "{{env.CONDA_PREFIX}}/lib/pkgconfig{% if 'PKG_CONFIG_PATH' in env %}:{{env.PKG_CONFIG_PATH}}{% endif %}"
-LD_LIBRARY_PATH = "{{env.CONDA_PREFIX}}{% if 'LD_LIBRARY_PATH' in env %}:{{env.LD_LIBRARY_PATH}}{% endif %}"
+PKG_CONFIG_PATH = "{{ vars.pixi_dir }}/lib/pkgconfig{% if 'PKG_CONFIG_PATH' in env %}:{{env.PKG_CONFIG_PATH}}{% endif %}"
+LD_LIBRARY_PATH = "{{ vars.pixi_dir }}/lib{% if 'LD_LIBRARY_PATH' in env %}:{{env.LD_LIBRARY_PATH}}{% endif %}"
 
 [tasks.vclone]
 description = "Clone a repo from the viamrobotics org"
