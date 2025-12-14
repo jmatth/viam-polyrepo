@@ -1,2 +1,11 @@
 # Ignore all directories assuming they are cloned repos.
 /*/
+
+# Ignore go workspace files as they depend on which repos are cloned and change
+# frequently.
+go.work
+go.work.sum
+
+# pixi environments
+.pixi/*
+!.pixi/config.toml

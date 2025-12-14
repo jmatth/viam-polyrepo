@@ -1,0 +1,12 @@
+[workspace]
+authors = ["Joshua Matthews <josh@jmatth.com>"]
+channels = ["conda-forge"]
+name = "workspace"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+nlopt = ">=2.10.0,<3"
+x264 = ">=1!164.3095,<1!165"
