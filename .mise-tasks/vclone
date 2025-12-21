@@ -1,0 +1,18 @@
+#!/usr/bin/env nu
+
+#MISE description="Clone a repo from the viamrobotics org"
+#USAGE arg "<repo>" help="repo name"
+
+def main [repo: string] {
+	if ($repo | is-empty) {
+		print "repo arg must be non-empty"
+		exit 1
+	}
+
+	if ($repo | path exists) {
+		print $'($repo) already exists'
+		exit 1
+	}
+
+	git clone $'git@github.com:viamrobotics/($repo).git'
+}

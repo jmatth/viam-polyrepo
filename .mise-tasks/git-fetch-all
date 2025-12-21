@@ -1,0 +1,10 @@
+#!/usr/bin/env nu
+
+#MISE description="Run git fetch in all cloned repos."
+
+def main [] {
+	ls -D */.git | get name | path dirname | par-each {|repo|
+		git -C $repo fetch
+		$repo
+	}
+}
