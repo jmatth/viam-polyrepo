@@ -9,14 +9,14 @@ pixi = "latest"
 [tool_alias]
 nushell = "github:nushell/nushell[exe=nu]"
 
-[vars]
-pixi_env = "{% if 'PIXI_ENVIRONMENT_NAME' in env %}{{ env.PIXI_ENVIRONMENT_NAME }}{% else %}default{% endif %}"
-pixi_dir = "{{config_root}}/.pixi/envs/{{ vars.pixi_env }}"
-system_ld_path = """{{ exec(command='nu -n -c "ldconfig -v e> /dev/null | lines | parse -r \\`^(?P<path>[^\\s]+):\\` | get path | str join :"') }}"""
+# [vars]
+# pixi_env = "{% if 'PIXI_ENVIRONMENT_NAME' in env %}{{ env.PIXI_ENVIRONMENT_NAME }}{% else %}default{% endif %}"
+# pixi_dir = "{{config_root}}/.pixi/envs/{{ vars.pixi_env }}"
+# system_ld_path = """{{ exec(command='nu -n -c "ldconfig -v e> /dev/null | lines | parse -r \\`^(?P<path>[^\\s]+):\\` | get path | str join :"') }}"""
 
-[env]
-PKG_CONFIG_PATH = "{{ vars.pixi_dir }}/lib/pkgconfig{% if 'PKG_CONFIG_PATH' in env %}:{{env.PKG_CONFIG_PATH}}{% endif %}"
-LD_LIBRARY_PATH = "{{ vars.system_ld_path }}:{{ vars.pixi_dir }}/lib{% if 'LD_LIBRARY_PATH' in env %}:{{env.LD_LIBRARY_PATH}}{% endif %}"
+# [env]
+# PKG_CONFIG_PATH = "{{ vars.pixi_dir }}/lib/pkgconfig{% if 'PKG_CONFIG_PATH' in env %}:{{env.PKG_CONFIG_PATH}}{% endif %}"
+# LD_LIBRARY_PATH = "{{ vars.system_ld_path }}:{{ vars.pixi_dir }}/lib{% if 'LD_LIBRARY_PATH' in env %}:{{env.LD_LIBRARY_PATH}}{% endif %}"
 
 [tasks.go-work-init]
 description = "Pull all workspace folders into a unified go workspace"
