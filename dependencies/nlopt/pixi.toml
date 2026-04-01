@@ -1,0 +1,16 @@
+[package]
+name = 'nlopt'
+version = '0.0.1'
+
+[package.build.source]
+path = 'src'
+
+[package.build.backend]
+name = 'pixi-build-cmake'
+version = '0.3.*'
+
+[package.build.config]
+extra-args = ['-DBUILD_SHARED_LIBS=OFF']
+
+[package.host-dependencies]
+cmake = '3.20.*'

@@ -1,0 +1,22 @@
+package:
+  name: x264
+  version: 0.0.1
+
+source:
+  path: ./src
+  use_gitignore: true
+
+build:
+  number: 0
+  script: |
+    export AS=nasm
+    # git checkout -- output
+    ./configure --prefix=$PREFIX --disable-cli --enable-static
+    make
+    make install
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - nasm
+  host: []

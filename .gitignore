@@ -1,5 +1,6 @@
 # Ignore all directories assuming they are cloned repos.
 /*/
+!/dependencies
 
 # Ignore go workspace files as they depend on which repos are cloned and change
 # frequently.

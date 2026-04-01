@@ -4,6 +4,7 @@ channels = ["conda-forge"]
 name = "viam-workspace"
 platforms = ["linux-64"]
 version = "0.1.0"
+preview = ['pixi-build']
 
 [activation.env]
 PKG_CONFIG_PATH = "$CONDA_PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH"
@@ -12,5 +13,8 @@ LD_LIBRARY_PATH = "$CONDA_PREFIX/lib:$LD_LIBRARY_PATH"
 [tasks]
 
 [dependencies]
-nlopt = ">=2.10.0,<3"
-x264 = ">=1!164.3095,<1!165"
+# nlopt = ">=2.10.0,<3"
+# x264 = ">=1!164.3095,<1!165"
+nlopt = { path = './dependencies/nlopt' }
+x264 = { path = './dependencies/x264' }
+gcc = ">=15.2.0,<15.3"

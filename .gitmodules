@@ -1,0 +1,6 @@
+[submodule "dependencies/nlopt/src"]
+	path = dependencies/nlopt/src
+	url = https://github.com/stevengj/nlopt.git
+[submodule "dependencies/x264/src"]
+	path = dependencies/x264/src
+	url = https://code.videolan.org/videolan/x264.git
