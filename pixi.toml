@@ -1,20 +1,35 @@
 [workspace]
+name = "viam-workspace"
 authors = ["Joshua Matthews <josh.matthews@viam.com>"]
 channels = ["conda-forge"]
-name = "viam-workspace"
 platforms = ["linux-64"]
 version = "0.1.0"
 preview = ['pixi-build']
 
 [activation.env]
-PKG_CONFIG_PATH = "$CONDA_PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH"
-LD_LIBRARY_PATH = "$CONDA_PREFIX/lib:$LD_LIBRARY_PATH"
+PKG_CONFIG_PATH = "$CONDA_PREFIX/lib/pkgconfig"
+CGO_CFLAGS = "-I$CONDA_PREFIX/include"
+CGO_LDFLAGS = "-L$CONDA_PREFIX/lib"
+# PKG_CONFIG_PATH = "$CONDA_PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH"
+# LD_LIBRARY_PATH = "$CONDA_PREFIX/lib:$LD_LIBRARY_PATH"
+# CGO_LDFLAGS = "-L$CONDA_PREFIX/lib -Wl,-rpath,$CONDA_PREFIX/lib"
+# Optional: keep Go's caches inside the project
+# GOPATH = "$PIXI_PROJECT_ROOT/.gopath"
+# GOMODCACHE = "$PIXI_PROJECT_ROOT/.gopath/pkg/mod"
 
 [tasks]
 
 [dependencies]
-# nlopt = ">=2.10.0,<3"
-# x264 = ">=1!164.3095,<1!165"
+# Required build tools, might exist on the host but might as well define it
+make = ">=4.4.1,<5"
+pkg-config = ">=0.29.2,<0.30"
+# Old stuff to maintain compatibility with at least Ubuntu Focal.
+gxx = "9.*"
+sysroot_linux-64 = "2.28.*"
+# Custom dynamic + static packages of rdk cgo dependencies.
 nlopt = { path = './dependencies/nlopt' }
+nlopt-static = { path = './dependencies/nlopt' }
 x264 = { path = './dependencies/x264' }
-gcc = ">=15.2.0,<15.3"
+x264-static = { path = './dependencies/x264' }
+# Misc. extra tools.
+patchelf = ">=0.19.1,<0.20"

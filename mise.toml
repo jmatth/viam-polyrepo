@@ -1,10 +1,10 @@
 [tools]
 actionlint = "1.7.8"
-bat = "latest"
 go = "1.25"
+golangci-lint = "v2.13.2"
 node = "22"
 nushell = "latest"
-pixi = "latest"
+pixi = "0.81.0"
 
 [tool_alias]
 nushell = "github:nushell/nushell[exe=nu]"

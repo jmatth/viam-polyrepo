@@ -1,7 +1,8 @@
 [package]
 name = 'x264'
-version = '0.0.1'
+version = '1!164.3095'
 
 [package.build.backend]
 name = 'pixi-build-rattler-build'
-version = '0.3.*'
+version = '*'
+channels = ["https://prefix.dev/conda-forge"]
