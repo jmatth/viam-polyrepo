@@ -1,6 +1,11 @@
 c_compiler_version:
-  - "9.5.0"
+  - if: linux
+    then: "9.5.0"
 cxx_compiler_version:
-  - "9.5.0"
+  - if: linux
+    then: "9.5.0"
 c_stdlib_version:
-  - "2.28"
+  - if: linux
+    then: "2.28"
+  - if: osx
+    then: "11.0"

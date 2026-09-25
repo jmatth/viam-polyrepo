@@ -49,6 +49,7 @@ outputs:
       build:
         - cmake
         - make
+        - ${{ stdlib('c') }}
         - ${{ compiler('c') }}
         - ${{ compiler('cxx') }}
       run_exports:
@@ -89,6 +90,7 @@ outputs:
       build:
         - cmake
         - make
+        - ${{ stdlib('c') }}
         - ${{ compiler('c') }}
         - ${{ compiler('cxx') }}
       run:
